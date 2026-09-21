@@ -22,3 +22,26 @@ def find_UPC(first_eleven):
     check_digit = (10 - (total % 10)) % 10
 
     return check_digit
+upc = input("Enter a 12-digit UPC: ")
+
+while len(upc) != 12 or not upc.isdigit():
+    print("Invalid input. Please enter exactly 12 numbers.")
+    upc = input("Enter a 12-digit UPC: ")
+
+first_eleven = upc[:11]
+provided_check_digit = int(upc[11])
+
+expected_check_digit = find_UPC(first_eleven)
+
+print()
+print(f"The first 11 digits are '{first_eleven}'.")
+print(f"The provided check digit is '{provided_check_digit}'.")
+print()
+print("Calculating...")
+print(f"The expected check digit is {expected_check_digit}.")
+print()
+
+if expected_check_digit == provided_check_digit:
+    print("This is a VALID UPC.")
+else:
+    print("This is an INVALID UPC.")
